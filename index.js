@@ -4,6 +4,8 @@ const fs = require("fs");
 const bot = new Discord.Client({disableEveryone: true});
 bot.commands = new Discord.Collection();
 
+//Preparation of commands module
+
 fs.readdir("./commands/", (err, files) => {
 
   if(err) console.log(err);
@@ -19,6 +21,8 @@ fs.readdir("./commands/", (err, files) => {
     bot.commands.set(props.help.name, props);
   });
 });
+
+//Turning bot on
 
 bot.on("ready", async () => {
   console.log(`${bot.user.username} is online on ${bot.guilds.size} servers!`);
@@ -38,5 +42,7 @@ bot.on("message", async message => {
   if(commandfile) commandfile.run(bot,message,args);
 
 });
+
+//Defining token file
 
 bot.login(botconfig.token);
