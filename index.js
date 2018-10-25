@@ -43,6 +43,17 @@ bot.on("message", async message => {
 
 });
 
+//Auto roles
+
+bot.on('guildMemberAdd', member => {
+  console.log('User ' + member.user.username + 'has joined the Server!') //Sends message to console
+  
+  var roleMember = message.guild.roles.find('name', 'Hráč');
+  var roleBan = message.guild.roles.find('name', 'Zákaz');
+  member.addRole(roleBan);
+  member.addRole(roleMember);
+});
+
 //Defining token file
 
 bot.login(botconfig.token);
